@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  validates :password, presence: true, length: { minimum: 6 }
+  # presence removed to avoid dup error messages for digest (don't like it, but tut suggests it)
+  validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 end
